@@ -24,9 +24,13 @@ void Game::initializeMap() {
     map->addSimpleCollectible(13, 2);
     map->addSimpleCollectible(4, 3);
     map->addSimpleCollectible(5, 1);
+    map->addSimpleCollectible(10, 11);
+    map->addSimpleCollectible(1, 15);
+    map->addSimpleCollectible(15, 10);
+
 
     map->addSpecialCollectible(7, 7);
-    map->addSpecialCollectible(1, 5);
+    map->addSpecialCollectible(12, 15);
     map->draw(scene);
 }
 
