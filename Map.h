@@ -33,7 +33,9 @@ public:
 
     void addEnemy(int gridX, int gridY, Player* player);
 
-    std::vector<Enemy*>& getEnemies();
+    std::vector<Enemy *>& getEnemies();
+
+    std::vector<Collectible *>& getCollectibles();
 
     bool isWall(int gridX, int gridY) const;
 
@@ -42,7 +44,7 @@ public:
 private:
     int tiles[height][width];
     std::vector<Collectible *> collectibles;
-    std::vector<Enemy* > enemies;
+    std::vector<Enemy *> enemies;
     int playerStartX;
     int playerStartY;
 };

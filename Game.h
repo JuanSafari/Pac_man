@@ -32,7 +32,7 @@ public:
 
     void initializeTimer();
 
-    void showGameOver();
+    void showGameOver(QString message);
 
     void gameLoop();
 
@@ -45,10 +45,10 @@ private:
 
     Map* map;
     Player* player;
-    std::vector<Enemy*> enemies;
+    std::vector<Enemy *> enemies;
     QGraphicsTextItem* scoreText;
 
-    std::vector<QGraphicsItem*> itemsToDelete;
+    std::vector<QGraphicsItem *> itemsToDelete;
 };
 
 #endif //GAME_H

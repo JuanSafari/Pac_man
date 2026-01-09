@@ -83,8 +83,12 @@ void Map::addEnemy(int gridX, int gridY, Player* player) {
     enemies.push_back(enemy);
 }
 
-std::vector<Enemy*>& Map::getEnemies() {
+std::vector<Enemy *>& Map::getEnemies() {
     return enemies;
+}
+
+std::vector<Collectible *>& Map::getCollectibles() {
+    return collectibles;
 }
 
 bool Map::isWall(int gridX, int gridY) const {

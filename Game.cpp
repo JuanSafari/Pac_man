@@ -51,7 +51,7 @@ void Game::initializeEnemies() {
 
     enemies = map->getEnemies();
 
-    for (Enemy* enemy : enemies) {
+    for (Enemy* enemy: enemies) {
         scene->addItem(enemy);
     }
 }
@@ -69,12 +69,12 @@ void Game::initializeTimer() {
     timer->start(30);
 }
 
-void Game::showGameOver() {
+void Game::showGameOver(QString message) {
     QGraphicsRectItem* overlay = new QGraphicsRectItem(scene->sceneRect());
     overlay->setBrush(Qt::black);
     scene->addItem(overlay);
 
-    QGraphicsTextItem* gameOverText = new QGraphicsTextItem("GAME OVER");
+    QGraphicsTextItem* gameOverText = new QGraphicsTextItem(message);
     gameOverText->setDefaultTextColor(Qt::red);
     gameOverText->setFont(QFont("Arial", 32));
     gameOverText->setPos(
@@ -87,19 +87,19 @@ void Game::showGameOver() {
 void Game::gameLoop() {
     scene->advance();
 
-    for (Enemy* enemy : enemies) {
+    for (Enemy* enemy: enemies) {
         if (!enemy->isAlive()) {
             itemsToDelete.push_back(enemy);
         }
     }
 
-    for (QGraphicsItem* item : itemsToDelete) {
+    for (QGraphicsItem* item: itemsToDelete) {
         scene->removeItem(item);
         delete item;
     }
     itemsToDelete.clear();
 
-    for (auto it = enemies.begin(); it != enemies.end(); ) {
+    for (auto it = enemies.begin(); it != enemies.end();) {
         if (!(*it)->isAlive()) {
             it = enemies.erase(it);
         } else {
@@ -107,7 +107,7 @@ void Game::gameLoop() {
         }
     }
 
-    for (Enemy* enemy : enemies) {
+    for (Enemy* enemy: enemies) {
         if (player->isPowered()) {
             enemy->setFrightened(true);
         } else {
@@ -115,9 +115,14 @@ void Game::gameLoop() {
         }
     }
 
+    if (enemies.empty() && map->getCollectibles().empty()) {
+        timer->stop();
+        showGameOver("YOU WIN!");
+    }
+
     if (!player->isVisible()) {
         timer->stop();
-        showGameOver();
+        showGameOver("GAME OVER");
     }
 }
 
