@@ -10,6 +10,7 @@
 #include "Map.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "Collectible.h"
 
 class Game {
 public:
@@ -49,6 +50,5 @@ private:
 
     std::vector<QGraphicsItem*> itemsToDelete;
 };
-
 
 #endif //GAME_H

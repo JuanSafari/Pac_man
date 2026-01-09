@@ -1,4 +1,7 @@
 #include "map.h"
+#include "Player.h"
+#include "Collectible.h"
+#include "Enemy.h"
 #include <QBrush>
 
 Map::Map() {
@@ -73,6 +76,15 @@ void Map::removeCollectible(Collectible* collectible) {
     if (it != collectibles.end()) {
         collectibles.erase(it);
     }
+}
+
+void Map::addEnemy(int gridX, int gridY, Player* player) {
+    Enemy* enemy = new Enemy(gridX, gridY, this, player);
+    enemies.push_back(enemy);
+}
+
+std::vector<Enemy*>& Map::getEnemies() {
+    return enemies;
 }
 
 bool Map::isWall(int gridX, int gridY) const {

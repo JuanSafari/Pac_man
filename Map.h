@@ -4,11 +4,14 @@
 #include <QGraphicsScene>
 #include <QGraphicsRectItem>
 #include <vector>
-#include "Collectible.h"
 
 #define MAP_WIDTH 20
 #define MAP_HEIGHT 20
 #define TILE_SIZE 30
+
+class Player;
+class Collectible;
+class Enemy;
 
 class Collectible;
 
@@ -28,6 +31,10 @@ public:
 
     void removeCollectible(Collectible* collectible);
 
+    void addEnemy(int gridX, int gridY, Player* player);
+
+    std::vector<Enemy*>& getEnemies();
+
     bool isWall(int gridX, int gridY) const;
 
     void getPlayerStart(int& x, int& y) const;
@@ -35,6 +42,7 @@ public:
 private:
     int tiles[height][width];
     std::vector<Collectible *> collectibles;
+    std::vector<Enemy* > enemies;
     int playerStartX;
     int playerStartY;
 };

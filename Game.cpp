@@ -46,8 +46,10 @@ void Game::initializePlayer() {
 }
 
 void Game::initializeEnemies() {
-    Enemy* enemy = new Enemy(map, player);
-    enemies.push_back(enemy);
+    map->addEnemy(15, 2, player);
+    map->addEnemy(11, 10, player);
+
+    enemies = map->getEnemies();
 
     for (Enemy* enemy : enemies) {
         scene->addItem(enemy);
