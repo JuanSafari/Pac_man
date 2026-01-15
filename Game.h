@@ -36,8 +36,6 @@ public:
 
     void gameLoop();
 
-    void enqueueObjectToDelete(QGraphicsItem* item);
-
 private:
     QGraphicsScene* scene;
     QGraphicsView* view;

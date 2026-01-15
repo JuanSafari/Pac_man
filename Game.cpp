@@ -129,9 +129,3 @@ void Game::gameLoop() {
         showGameOver("GAME OVER");
     }
 }
-
-void Game::enqueueObjectToDelete(QGraphicsItem* item) {
-    if (item) {
-        itemsToDelete.push_back(item);
-    }
-}
