@@ -5,10 +5,10 @@
 Collectible::Collectible(int x, int y, int size, CollectibleType type)
     : QGraphicsEllipseItem(x, y, size, size), type(type) {
     if (type == CollectibleType::Simple) {
-        value = 10;
+        value = NORMAL_VALUE;
         setBrush(Qt::yellow);
     } else {
-        value = 50;
+        value = SPECIAL_VALUE;
         setBrush(Qt::red);
     }
 }

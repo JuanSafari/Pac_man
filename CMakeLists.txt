@@ -29,6 +29,8 @@ add_executable(Pac_man
         Game.cpp
         Enemy.h
         Enemy.cpp
+        MovingEntity.h
+        MovingEntity.cpp
 )
 
 # Link Qt libraries

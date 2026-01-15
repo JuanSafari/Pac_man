@@ -1,10 +1,8 @@
 #include "Player.h"
-#include "Map.h"
-#include "Collectible.h"
 #include <QBrush>
 #include <QTimer>
 
-Player::Player(Map* map, QGraphicsTextItem* scoreText) {
+Player::Player(Map* map, QGraphicsTextItem* scoreText): MovingEntity(map, STEP) {
     setRect(0, 0, PLAYER_WIDTH, PLAYER_HEIGHT);
     setBrush(Qt::yellow);
     setFlag(QGraphicsItem::ItemIsFocusable);
@@ -35,41 +33,6 @@ void Player::keyPressEvent(QKeyEvent* event) {
     update();
 }
 
-bool Player::canMove(Direction dir) {
-    int newX = x();
-    int newY = y();
-
-    switch (dir) {
-        case Direction::Left: newX -= step;
-            break;
-        case Direction::Right: newX += step;
-            break;
-        case Direction::Up: newY -= step;
-            break;
-        case Direction::Down: newY += step;
-            break;
-        default: return false;
-    }
-
-    int left = newX;
-    int right = newX + Map::tileSize - 1;
-    int top = newY;
-    int bottom = newY + Map::tileSize - 1;
-
-    int leftCol = left / Map::tileSize;
-    int rightCol = right / Map::tileSize;
-    int topRow = top / Map::tileSize;
-    int bottomRow = bottom / Map::tileSize;
-
-    return !(
-        map->isWall(leftCol, topRow) ||
-        map->isWall(rightCol, topRow) ||
-        map->isWall(leftCol, bottomRow) ||
-        map->isWall(rightCol, bottomRow)
-    );
-}
-
-
 void Player::advance(int phase) {
     if (!phase) return;
 
@@ -77,24 +40,7 @@ void Player::advance(int phase) {
         direction = desiredDirection;
     }
 
-    if (canMove(direction)) {
-        switch (direction) {
-            case Direction::Left:
-                setPos(x() - step, y());
-                break;
-            case Direction::Right:
-                setPos(x() + step, y());
-                break;
-            case Direction::Up:
-                setPos(x(), y() - step);
-                break;
-            case Direction::Down:
-                setPos(x(), y() + step);
-                break;
-            case Direction::None:
-                break;
-        }
-    }
+    setPosition(direction);
 
     for (QGraphicsItem* item: collidingItems()) {
         if (auto* c = dynamic_cast<Collectible *>(item)) {

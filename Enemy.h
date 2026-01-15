@@ -3,14 +3,9 @@
 
 #include <QGraphicsRectItem>
 
-#define POS_X 5
-#define POS_Y 5
+#include "MovingEntity.h"
 
-class Map;
-class Player;
-enum class Direction;
-
-class Enemy : public QGraphicsRectItem {
+class Enemy : public MovingEntity {
 public:
     Enemy(int gridX, int gridY, Map* map, Player* player);
 
@@ -28,8 +23,6 @@ private:
     int step;
 
     bool alive;
-
-    bool canMove(Direction dir);
 
     void chooseNewDirection();
 };

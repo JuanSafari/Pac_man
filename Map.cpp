@@ -1,8 +1,8 @@
 #include "Map.h"
-#include "Player.h"
-#include "Collectible.h"
-#include "Enemy.h"
 #include <QBrush>
+
+#include "Player.h"
+#include "Enemy.h"
 
 Map::Map() {
     int temp[20][20] = {

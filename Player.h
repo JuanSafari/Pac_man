@@ -4,23 +4,15 @@
 #include <QGraphicsRectItem>
 #include <QKeyEvent>
 
+#include "MovingEntity.h"
+#include "Collectible.h"
+
 #define PLAYER_WIDTH 30
 #define PLAYER_HEIGHT 30
 #define STEP 5
-#define FRAME_TIME 16
+#define FRAME_TIME 30
 
-class Map;
-class Collectible;
-
-enum class Direction {
-    Up,
-    Down,
-    Left,
-    Right,
-    None
-};
-
-class Player : public QGraphicsRectItem {
+class Player : public MovingEntity {
 public:
     Player(Map* map, QGraphicsTextItem* scoreText);
 
@@ -43,8 +35,6 @@ private:
     bool powerMode;
     int powerTimer;
     QGraphicsTextItem* scoreText;
-
-    bool canMove(Direction dir);
 };
 
 #endif

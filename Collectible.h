@@ -3,6 +3,9 @@
 
 #include <QGraphicsEllipseItem>
 
+#define NORMAL_VALUE 10
+#define SPECIAL_VALUE 50
+
 enum class CollectibleType {
     Simple,
     Special
