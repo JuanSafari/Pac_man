@@ -24,9 +24,13 @@ void Game::initializeMap() {
     map->addSimpleCollectible(13, 2);
     map->addSimpleCollectible(4, 3);
     map->addSimpleCollectible(5, 1);
+    map->addSimpleCollectible(10, 11);
+    map->addSimpleCollectible(1, 15);
+    map->addSimpleCollectible(15, 10);
+
 
     map->addSpecialCollectible(7, 7);
-    map->addSpecialCollectible(1, 5);
+    map->addSpecialCollectible(12, 15);
     map->draw(scene);
 }
 
@@ -46,10 +50,12 @@ void Game::initializePlayer() {
 }
 
 void Game::initializeEnemies() {
-    Enemy* enemy = new Enemy(map, player);
-    enemies.push_back(enemy);
+    map->addEnemy(15, 2, player);
+    map->addEnemy(11, 10, player);
 
-    for (Enemy* enemy : enemies) {
+    enemies = map->getEnemies();
+
+    for (Enemy* enemy: enemies) {
         scene->addItem(enemy);
     }
 }
@@ -67,12 +73,12 @@ void Game::initializeTimer() {
     timer->start(30);
 }
 
-void Game::showGameOver() {
+void Game::showGameOver(QString message) {
     QGraphicsRectItem* overlay = new QGraphicsRectItem(scene->sceneRect());
     overlay->setBrush(Qt::black);
     scene->addItem(overlay);
 
-    QGraphicsTextItem* gameOverText = new QGraphicsTextItem("GAME OVER");
+    QGraphicsTextItem* gameOverText = new QGraphicsTextItem(message);
     gameOverText->setDefaultTextColor(Qt::red);
     gameOverText->setFont(QFont("Arial", 32));
     gameOverText->setPos(
@@ -85,19 +91,19 @@ void Game::showGameOver() {
 void Game::gameLoop() {
     scene->advance();
 
-    for (Enemy* enemy : enemies) {
+    for (Enemy* enemy: enemies) {
         if (!enemy->isAlive()) {
             itemsToDelete.push_back(enemy);
         }
     }
 
-    for (QGraphicsItem* item : itemsToDelete) {
+    for (QGraphicsItem* item: itemsToDelete) {
         scene->removeItem(item);
         delete item;
     }
     itemsToDelete.clear();
 
-    for (auto it = enemies.begin(); it != enemies.end(); ) {
+    for (auto it = enemies.begin(); it != enemies.end();) {
         if (!(*it)->isAlive()) {
             it = enemies.erase(it);
         } else {
@@ -105,7 +111,7 @@ void Game::gameLoop() {
         }
     }
 
-    for (Enemy* enemy : enemies) {
+    for (Enemy* enemy: enemies) {
         if (player->isPowered()) {
             enemy->setFrightened(true);
         } else {
@@ -113,9 +119,14 @@ void Game::gameLoop() {
         }
     }
 
+    if (enemies.empty() && map->getCollectibles().empty()) {
+        timer->stop();
+        showGameOver("YOU WIN!");
+    }
+
     if (!player->isVisible()) {
         timer->stop();
-        showGameOver();
+        showGameOver("GAME OVER");
     }
 }
 

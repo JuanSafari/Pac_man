@@ -1,4 +1,6 @@
 #include "Player.h"
+#include "Map.h"
+#include "Collectible.h"
 #include <QBrush>
 #include <QTimer>
 

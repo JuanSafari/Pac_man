@@ -3,8 +3,10 @@
 #include <QTimer>
 #include <cstdlib>
 #include <ctime>
+#include "Player.h"
+#include "Map.h"
 
-Enemy::Enemy(Map* map, Player* player) {
+Enemy::Enemy(int gridX, int gridY, Map* map, Player* player) {
     this->map = map;
     this->player = player;
     this->step = STEP;
@@ -15,7 +17,7 @@ Enemy::Enemy(Map* map, Player* player) {
 
     direction = Direction::Left;
 
-    setPos(POS_X * Map::tileSize, POS_Y * Map::tileSize);
+    setPos(gridX * Map::tileSize, gridY * Map::tileSize);
 
     std::srand(std::time(nullptr));
 }

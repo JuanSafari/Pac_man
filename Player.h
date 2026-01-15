@@ -3,12 +3,14 @@
 
 #include <QGraphicsRectItem>
 #include <QKeyEvent>
-#include "Map.h"
 
 #define PLAYER_WIDTH 30
 #define PLAYER_HEIGHT 30
 #define STEP 5
 #define FRAME_TIME 16
+
+class Map;
+class Collectible;
 
 enum class Direction {
     Up,

@@ -2,15 +2,17 @@
 #define ENEMY_H
 
 #include <QGraphicsRectItem>
-#include "Map.h"
-#include "Player.h"
 
 #define POS_X 5
 #define POS_Y 5
 
+class Map;
+class Player;
+enum class Direction;
+
 class Enemy : public QGraphicsRectItem {
 public:
-    Enemy(Map* map, Player* player);
+    Enemy(int gridX, int gridY, Map* map, Player* player);
 
     void advance(int phase) override;
 
