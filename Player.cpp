@@ -14,6 +14,8 @@ Player::Player(Map* map, QGraphicsTextItem* scoreText) {
     this->map = map;
     this->score = 0;
     this->scoreText = scoreText;
+    this->powerMode = false;
+    this->powerTimer = 0;
 
     int startX, startY;
     map->getPlayerStart(startX, startY);

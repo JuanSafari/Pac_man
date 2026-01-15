@@ -1,4 +1,4 @@
-#include "map.h"
+#include "Map.h"
 #include "Player.h"
 #include "Collectible.h"
 #include "Enemy.h"
@@ -43,6 +43,7 @@ void Map::draw(QGraphicsScene* scene) {
                 wall->setBrush(Qt::blue);
                 wall->setPen(Qt::NoPen);
                 scene->addItem(wall);
+                wallItems.push_back(wall);
             }
         }
     }

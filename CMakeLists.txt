@@ -21,7 +21,7 @@ add_executable(Pac_man
         main.cpp
         Player.h
         Player.cpp
-        map.h
+        Map.h
         map.cpp
         Collectible.h
         Collectible.cpp

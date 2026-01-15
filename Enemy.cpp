@@ -101,7 +101,7 @@ void Enemy::chooseNewDirection() {
         Direction::Right
     };
 
-    for (int i = 0; i < 4; i++) {
+    while (true) {
         Direction d = dirs[rand() % 4];
         if (canMove(d)) {
             direction = d;

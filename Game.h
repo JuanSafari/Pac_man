@@ -12,6 +12,8 @@
 #include "Enemy.h"
 #include "Collectible.h"
 
+#define FRAME_TIME 30
+
 class Game {
 public:
     Game();

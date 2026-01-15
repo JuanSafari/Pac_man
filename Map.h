@@ -45,6 +45,7 @@ private:
     int tiles[height][width];
     std::vector<Collectible *> collectibles;
     std::vector<Enemy *> enemies;
+    std::vector<QGraphicsRectItem*> wallItems;
     int playerStartX;
     int playerStartY;
 };

@@ -70,7 +70,7 @@ void Game::initializeTimer() {
     QObject::connect(timer, &QTimer::timeout, [&]() {
         gameLoop();
     });
-    timer->start(30);
+    timer->start(FRAME_TIME);
 }
 
 void Game::showGameOver(QString message) {
