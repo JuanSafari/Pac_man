@@ -8,6 +8,8 @@
 #define MAP_WIDTH 20
 #define MAP_HEIGHT 20
 #define TILE_SIZE 30
+#define PLAYER_X 1
+#define PLAYER_Y 1
 
 class Player;
 class Collectible;

@@ -31,8 +31,8 @@ Map::Map() {
         for (int j = 0; j < width; j++)
             tiles[i][j] = temp[i][j];
 
-    playerStartX = 1 * tileSize;
-    playerStartY = 1 * tileSize;
+    playerStartX = PLAYER_X * tileSize;
+    playerStartY = PLAYER_Y * tileSize;
 }
 
 void Map::draw(QGraphicsScene* scene) {
